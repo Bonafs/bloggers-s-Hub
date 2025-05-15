@@ -1,53 +1,79 @@
-<!-- filepath: BloggersHub/blog.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloggers' Hub - Blog</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
+    <title>Bloggers' Hub - Home</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/script.js" defer></script>
 </head>
 <body>
     <nav>
         <h1>Bloggers' Hub</h1>
-        <button onclick="toggleTheme()">Toggle Dark Mode</button>
-        <div class="burger" onclick="toggleMenu()">
+        <button id="themeToggleBtn">Toggle Dark Mode</button>
+        <div class="burger" id="burgerMenu">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="blog.html" class="active">Blog</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#contact">Contact</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="blog.html">Blog</a>
         </div>
     </nav>
-    <div class="container">
-        <section class="blog-header">
+
+    <main class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Bloggers' Hub</h2>
+            <p>
+                Bloggers' Hub is a modern, responsive platform for bloggers to share, read, and interact with blog posts. 
+                Enjoy dynamic blog filtering, interactive posts, and a seamless experience across all devices.
+            </p>
+        </section>
+
+        <!-- Blog Section (optional: include a preview or link to blog.html) -->
+        <section id="blog-preview">
             <h2>Latest Blog Posts</h2>
-            <div class="blog-controls">
-                <input type="text" id="searchInput" placeholder="Search posts...">
-                <select id="categoryFilter">
-                    <option value="all">All Categories</option>
-                    <option value="tech">Tech</option>
-                    <option value="lifestyle">Lifestyle</option>
-                    <option value="news">News</option>
-                </select>
+            <p>Check out our <a href="blog.html">Blog</a> for the latest posts, tech trends, and lifestyle tips!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form id="contactForm" autocomplete="off">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div>
+                <p><strong>Address:</strong> Bloggers' Hub, Amberley road, westminster, London W9 2JJ</p>
+                <p><strong>Phone:</strong> <a href="tel:+442084611323">+442084611323</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@bloggershub.com">info@bloggershub.com</a></p>
+            </div>
+            <div class="map-responsive">
+                <iframe
+                    src="https://www.google.com/maps?q=Amberley+road,+Westminster,+London+W9+2JJ&output=embed"
+                    width="400"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </section>
-        <section id="blog-list" class="blog-list">
-            <!-- Blog posts will be rendered here by JavaScript -->
-        </section>
-    </div>
+    </main>
+
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" id="closeModalBtn">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
 </body>
 </html>
-
-
