@@ -1,0 +1,53 @@
+<!-- filepath: BloggersHub/blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloggers' Hub - Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <nav>
+        <h1>Bloggers' Hub</h1>
+        <button onclick="toggleTheme()">Toggle Dark Mode</button>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+    <div class="container">
+        <section class="blog-header">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-controls">
+                <input type="text" id="searchInput" placeholder="Search posts...">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="tech">Tech</option>
+                    <option value="lifestyle">Lifestyle</option>
+                    <option value="news">News</option>
+                </select>
+            </div>
+        </section>
+        <section id="blog-list" class="blog-list">
+            <!-- Blog posts will be rendered here by JavaScript -->
+        </section>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+

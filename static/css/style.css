@@ -1,0 +1,233 @@
+/* Base styles, nav, container, and blog styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+#root, .container {
+    min-height: calc(100vh - 64px);
+    box-sizing: border-box;
+    height: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+@media (max-width: 600px) {
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+nav h1 {
+    margin: 0;
+}
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+.nav-links a.active {
+    background-color: #007bff;
+}
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+}
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 150px;
+        border-radius: 5px;
+        padding: 1rem;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .burger {
+        display: flex;
+    }
+}
+button, .like-btn, .comment-btn {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background 0.2s;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+button:hover, .like-btn:hover, .comment-btn:hover {
+    background-color: #0056b3;
+}
+.blog-header {
+    margin-bottom: 2rem;
+}
+.blog-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.blog-controls input, .blog-controls select {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.blog-post {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: box-shadow 0.2s;
+    position: relative;
+}
+.blog-post:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.blog-post .post-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.blog-post .post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+.blog-post .post-content {
+    margin-bottom: 1rem;
+}
+.blog-post .post-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.comment-section {
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    border: 1px solid #eee;
+}
+.comment-list {
+    margin-bottom: 1rem;
+}
+.comment {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+.comment:last-child {
+    border-bottom: none;
+}
+.comment-author {
+    font-weight: bold;
+    color: #007bff;
+}
+.comment-text {
+    margin-left: 0.5rem;
+}
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+    margin-top: 1rem;
+}
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 0;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90vw;
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+}
+.dark-mode {
+    background-color: #222 !important;
+    color: white !important;
+}
+.dark-mode .blog-post {
+    background: #333;
+    color: #f8f9fa;
+    border: 1px solid #555;
+}
+.dark-mode .modal-content {
+    background: #222;
+    color: #f8f9fa;
+}
+.dark-mode .comment-section {
+    background: #222;
+    color: #f8f9fa;
+    border: 1px solid #555;
+}
