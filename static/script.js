@@ -149,7 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.className = 'delete-btn';
-        deleteButton.onclick = () => blogPosts.removeChild(postDiv);
+        deleteButton.onclick = () => {
+            blogPosts.removeChild(postDiv);
+            updateScrollToTopButton(); // Update after removal
+        };
         postDiv.appendChild(deleteButton);
 
         blogPosts.appendChild(postDiv);
@@ -167,6 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('postContent').value = '';
         document.getElementById('postConfirm').checked = false;
         document.getElementById('postDate').value = today;
+
+        updateScrollToTopButton(); // Update after adding
     });
 
     // Add a comment to the discuss section
@@ -382,14 +387,25 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Show or hide the "Return to Top" button
-    window.addEventListener('scroll', () => {
+    function updateScrollToTopButton() {
         const scrollToTopButton = document.getElementById('scrollToTop');
-        if (window.scrollY > 200) {
-            scrollToTopButton.style.display = 'block';
-        } else {
-            scrollToTopButton.style.display = 'none';
+        const blogPostsDiv = document.getElementById('blogPosts');
+        if (scrollToTopButton && blogPostsDiv) {
+            const posts = blogPostsDiv.querySelectorAll('.blog-post');
+            // Show button only if there is at least one post and the user has scrolled down 200px
+            if (posts.length > 0 && window.scrollY > 200) {
+                scrollToTopButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
         }
-    });
+    }
+
+    // Ensure the button is correct on page load
+    updateScrollToTopButton();
+
+    // Update button on scroll
+    window.addEventListener('scroll', updateScrollToTopButton);
 
     // Allow Enter to submit the blog post form from any input (except textarea)
     document.getElementById('addPostForm').addEventListener('keydown', function (e) {

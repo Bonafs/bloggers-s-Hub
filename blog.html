@@ -51,6 +51,9 @@
     <div class="blog-posts" id="blogPosts">
         <!-- Blog posts will be dynamically added here -->
     </div>
+    <button id="scrollToTop" onclick="scrollToTop()" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:1000;">
+    ⬆️ Return to Top
+</button>
 
     <!-- Modal Overlay for Blog Search -->
     <div id="searchModalOverlay" class="modal-overlay" style="display:none;">
@@ -58,35 +61,11 @@
     </div>
 
     <!-- Spacer to prevent footer overlap -->
-    <div class="footer-spacer"></div>
-
-    <!-- Return to Top button -->
-    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" style="display:none;">Return to Top</button>
+    <div class="footer-spacer"></div> 
+   
 
     <footer>
         <p>&copy; 2025 CodeMe. All rights reserved.</p>
     </footer>
-    <script>
-        // Show/hide "Return to Top" button only if there are blog posts and total content length is reached
-        document.addEventListener('DOMContentLoaded', function () {
-            const blogPostsDiv = document.getElementById('blogPosts');
-            const scrollBtn = document.getElementById('scrollToTop');
-            function updateScrollBtn() {
-                // Show if there is at least one blog post and total content > 100 chars
-                const posts = blogPostsDiv.querySelectorAll('.blog-post');
-                let totalLength = 0;
-                posts.forEach(post => {
-                    const content = post.querySelector('.post-content');
-                    if (content) totalLength += content.textContent.trim().length;
-                });
-                scrollBtn.style.display = (posts.length > 0 && totalLength > 100) ? 'block' : 'none';
-            }
-            // Initial check
-            updateScrollBtn();
-            // Check after each post is added or removed
-            blogPostsDiv.addEventListener('DOMNodeInserted', updateScrollBtn);
-            blogPostsDiv.addEventListener('DOMNodeRemoved', updateScrollBtn);
-        });
-    </script>
 </body>
 </html>

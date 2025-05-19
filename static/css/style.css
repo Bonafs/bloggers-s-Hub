@@ -132,6 +132,7 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     transition: box-shadow 0.2s;
     position: relative;
     margin-bottom: 1.5rem;
+    overflow: auto; /* Ensure content stays within area */
 }
 .blog-post:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -150,26 +151,27 @@ button:hover, .like-btn:hover, .comment-btn:hover {
 .blog-post .post-content {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
+    word-break: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 .blog-post .post-actions {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
-.comment-section {
-    margin-top: 1rem;
-    background: #fff;
-    border-radius: 5px;
-    padding: 1rem;
-    border: 1px solid #eee;
-}
-.comment-list {
-    margin-bottom: 1rem;
+
+/* Ensure comment content wraps and stays in area */
+.comment-content {
+    word-break: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 .comment {
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
+    overflow: auto;
 }
 .comment:last-child {
     border-bottom: none;
@@ -297,9 +299,9 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     }
 }
 
-/* Scroll to top button */
 .scroll-to-top {
     margin-top: 2rem;
+    display: none; /* Hidden by default, shown via JS */
 }
 
 /* Footer styles */
@@ -346,6 +348,9 @@ footer {
     border: 1px solid #ccc;
     resize: vertical;
     margin-top: 1rem;
+    word-break: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 /* Comment row */
