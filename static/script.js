@@ -416,3 +416,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Contact form handling for index.html
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            // Optionally validate email/message here
+            // Redirect to success.html with name as query param
+            window.location.href = `success.html?name=${encodeURIComponent(name)}`;
+        });
+    }
+});
