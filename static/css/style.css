@@ -27,6 +27,8 @@ body {
         padding-right: 0.5rem;
     }
 }
+
+/* Navigation and burger menu styles */
 nav {
     display: flex;
     justify-content: space-between;
@@ -34,6 +36,7 @@ nav {
     background-color: #333;
     color: white;
     padding: 1rem;
+    position: relative;
 }
 nav h1 {
     margin: 0;
@@ -55,13 +58,16 @@ nav h1 {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    margin-left: 1rem;
 }
 .burger div {
     width: 25px;
     height: 3px;
     background-color: white;
     margin: 3px 0;
+    transition: 0.4s;
 }
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -73,6 +79,7 @@ nav h1 {
         width: 150px;
         border-radius: 5px;
         padding: 1rem;
+        z-index: 100;
     }
     .nav-links.active {
         display: flex;
@@ -81,6 +88,7 @@ nav h1 {
         display: flex;
     }
 }
+
 button, .like-btn, .comment-btn {
     cursor: pointer;
     padding: 0.5rem 1rem;
@@ -358,20 +366,7 @@ footer {
     cursor: pointer;
 }
 
-/* Burger menu for nav */
-.burger {
-    display: inline-block;
-    cursor: pointer;
-}
-.burger div {
-    width: 25px;
-    height: 3px;
-    background: #333;
-    margin: 5px 0;
-    transition: 0.4s;
-}
-
-/* Nav links responsive */
+/* Nav links responsive for extra small screens */
 @media (max-width: 600px) {
     .nav-links {
         flex-direction: column;
