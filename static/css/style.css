@@ -7,9 +7,8 @@ html, body {
 }
 body {
     min-height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     background: #fff;
     color: #333;
@@ -124,6 +123,7 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     transition: box-shadow 0.2s;
     position: relative;
+    margin-bottom: 1.5rem;
 }
 .blog-post:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -140,6 +140,7 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     margin-bottom: 1rem;
 }
 .blog-post .post-content {
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
 }
 .blog-post .post-actions {
@@ -187,14 +188,40 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     position: absolute;
     border: 0;
 }
-.modal {
+
+/* Modal styles */
+.modal-overlay {
     position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3000 !important;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    max-width: calc(100% - 2rem);
+    width: auto;
+    box-sizing: border-box;
+}
+.modal {
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    max-width: 90vw;
+    width: auto;
+    max-height: 90vh;
+    height: auto;
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 3001 !important;
+    outline: none;
+    display: block;
+    overflow-y: auto;
 }
 .modal-content {
     background: #fff;
@@ -204,14 +231,11 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     width: 90vw;
     position: relative;
 }
-
 .modal-list {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-
-
 .close-btn {
     position: absolute;
     top: 1rem;
@@ -220,6 +244,168 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     color: #333;
     cursor: pointer;
 }
+.dynamic-modal-below .modal {
+    z-index: 3001 !important;
+}
+
+/* Add-post and blog-posts margin and width */
+.add-post,
+.blog-posts,
+.footer-spacer,
+#searchInput,
+#searchModal {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    max-width: calc(100% - 2rem);
+    width: auto;
+    box-sizing: border-box;
+}
+
+/* Responsive: keep margin fixed, but allow max-width for large screens if needed */
+@media (min-width: 800px) {
+    .add-post,
+    .blog-posts,
+    .modal-overlay,
+    .footer-spacer,
+    #searchInput,
+    #searchModal {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        max-width: calc(100% - 2rem);
+        width: auto;
+    }
+}
+@media (max-width: 799px) {
+    .add-post,
+    .blog-posts,
+    .modal-overlay,
+    .footer-spacer,
+    #searchInput,
+    #searchModal {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        max-width: calc(100% - 2rem);
+        width: auto;
+    }
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+    margin-top: 2rem;
+}
+
+/* Footer styles */
+footer {
+    margin-top: auto;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+.footer-spacer {
+    height: 70px;
+}
+
+/* Responsive form row for add-post */
+.add-post .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.add-post .form-row input[type="text"],
+.add-post .form-row input[type="date"] {
+    flex: 1 1 150px;
+    min-width: 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Responsive textarea */
+.add-post textarea,
+.comment-input {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-top: 1rem;
+}
+
+/* Comment row */
+.comment-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Delete button */
+.delete-btn {
+    margin-top: 0.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Burger menu for nav */
+.burger {
+    display: inline-block;
+    cursor: pointer;
+}
+.burger div {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Nav links responsive */
+@media (max-width: 600px) {
+    .nav-links {
+        flex-direction: column;
+        display: none;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .add-post input,
+    .add-post textarea,
+    .comment-row input,
+    .comment-input {
+        font-size: 1rem;
+    }
+    .modal {
+        width: 95vw;
+        padding: 1rem;
+    }
+}
+@media (max-width: 400px) {
+    .modal {
+        width: 99vw;
+        padding: 0.5rem;
+    }
+}
+
+/* Dark mode styles */
 .dark-mode {
     background-color: #222 !important;
     color: white !important;
@@ -237,119 +423,6 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     background: #222;
     color: #f8f9fa;
     border: 1px solid #555;
-}
-
-.form-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.form-row input[type="text"],
-.form-row input[type="date"] {
-    flex: 1 1 150px;
-    min-width: 120px;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.add-post textarea,
-.comment-input {
-    width: 100%;
-    margin-top: 1rem;
-    min-height: 200px;
-    box-sizing: border-box;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: vertical;
-}
-
-.comment-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.delete-btn {
-    margin-top: 0.5rem;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 3000 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal {
-    background: #fff;
-    color: #222;
-    border-radius: 8px;
-    max-width: 90vw;
-    width: auto;
-    max-height: 90vh;
-    height: auto;
-    padding: 1.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 3001 !important;
-    outline: none;
-    display: block;
-    overflow-y: auto;
-}
-
-.dynamic-modal-below .modal {
-    z-index: 3001 !important;
-}
-
-@media (max-width: 600px) {
-    .add-post input,
-    .add-post textarea,
-    .comment-row input,
-    .comment-input {
-        font-size: 1rem;
-    }
-    .modal {
-        width: 95vw;
-        padding: 1rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .modal {
-        width: 99vw;
-        padding: 0.5rem;
-    }
-}
-
-footer {
-    margin-top: auto;
-    width: 100%;
-    background: #222;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    z-index: 10;
-}
-.footer-spacer {
-    height: 70px;
 }
 
 /* Contact form styles for full-width message box */

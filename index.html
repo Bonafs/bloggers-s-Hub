@@ -7,6 +7,35 @@
     <title>Bloggers' Hub - Home</title>
     <link rel="stylesheet" href="static/css/style.css">
     <script src="static/script.js" defer></script>
+    <script>
+        // Ensure dark mode toggle works even if script.js is not loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Toggle dark mode
+            var themeBtn = document.getElementById('themeToggleBtn');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function () {
+                    document.body.classList.toggle('dark-mode');
+                });
+            }
+            // Burger menu toggle
+            var burger = document.getElementById('burgerMenu');
+            var navLinks = document.getElementById('navLinks');
+            if (burger && navLinks) {
+                burger.addEventListener('click', function () {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            // Contact form submit
+            var form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    alert('Thank you for your message, ' + document.getElementById('name').value + '!');
+                    form.reset();
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
