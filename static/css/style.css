@@ -188,7 +188,6 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     border: 0;
 }
 .modal {
-    display: none;
     position: fixed;
     z-index: 1000;
     left: 0; top: 0;
@@ -205,6 +204,14 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     width: 90vw;
     position: relative;
 }
+
+.modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
 .close-btn {
     position: absolute;
     top: 1rem;
@@ -230,4 +237,103 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     background: #222;
     color: #f8f9fa;
     border: 1px solid #555;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.form-row input[type="text"],
+.form-row input[type="date"] {
+    flex: 1 1 150px;
+    min-width: 120px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-post textarea,
+.comment-input {
+    width: 100%;
+    margin-top: 1rem;
+    min-height: 200px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.comment-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.delete-btn {
+    margin-top: 0.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ...existing styles above... */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3000 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    max-width: 90vw;
+    width: auto;
+    max-height: 90vh;
+    height: auto;
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 3001 !important;
+    outline: none;
+    display: block;
+    overflow-y: auto;
+}
+
+.dynamic-modal-below .modal {
+    z-index: 3001 !important;
+}
+
+@media (max-width: 600px) {
+    .add-post input,
+    .add-post textarea,
+    .comment-row input,
+    .comment-input {
+        font-size: 1rem;
+    }
+    .modal {
+        width: 95vw;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .modal {
+        width: 99vw;
+        padding: 0.5rem;
+    }
 }
