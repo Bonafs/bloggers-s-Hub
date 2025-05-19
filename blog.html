@@ -10,19 +10,19 @@
 </head>
 
 <body>
-    <nav>
-        <h1>Blogs</h1>
-        <button onclick="toggleTheme()">Toggle Dark Mode</button>
-        <div class="burger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">HOME</a>
-            <a href="blog.html" class="active">BLOG</a>
-        </div>
-    </nav>
+ <nav>
+    <h1>Blogs</h1>
+    <button id="themeToggleBtn">Toggle Dark Mode</button>
+    <div class="burger" id="burgerMenu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">HOME</a>
+        <a href="blog.html" class="active">BLOG</a>
+    </div>
+</nav>
 
     <div style="margin-bottom:1.5rem;">
         <input type="text" id="searchInput" placeholder="Search blog titles..."
