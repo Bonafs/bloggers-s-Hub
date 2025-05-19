@@ -282,8 +282,6 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     cursor: pointer;
 }
 
-/* ...existing styles above... */
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -335,5 +333,45 @@ button:hover, .like-btn:hover, .comment-btn:hover {
     .modal {
         width: 99vw;
         padding: 0.5rem;
+    }
+}
+
+footer {
+    margin-top: auto;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+.footer-spacer {
+    height: 70px;
+}
+
+/* Contact form styles for full-width message box */
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#contactForm input[type="email"],
+#contactForm input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+#contactForm textarea {
+    width: 100%;
+    min-height: 120px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+@media (max-width: 600px) {
+    #contactForm input,
+    #contactForm textarea {
+        font-size: 1rem;
     }
 }
