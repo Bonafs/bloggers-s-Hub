@@ -220,31 +220,31 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div style="margin-bottom:1.5rem;">
-            <input type="text" id="searchInput" placeholder="Search blog titles..."
-                style="width:70%;max-width:350px;padding:0.5rem;border-radius:5px;border:1px solid #ccc;"
-                onkeydown="if(event.key==='Enter'){event.preventDefault();searchBlogs();}">
-            <button onclick="searchBlogs()"
-                style="padding:0.5rem 1rem;border-radius:5px;border:none;background:#007bff;color:#fff;cursor:pointer;">Search</button>
-        </div>
-        <div class="add-post">
-            <h2>Share Your Ideas</h2>
-            <form id="addPostForm" onsubmit="addPost(event)">
-                <input type="text" id="postTopic" placeholder="Enter the topic of your blog" required>
-                <input type="text" id="postAuthor" placeholder="Enter your first name" required>
-                <input type="date" id="postDate" required>
-                <textarea id="postContent" placeholder="Write your blog post here..." required></textarea>
-                <div style="margin-bottom: 1rem;">
-                    <input type="checkbox" id="postConfirm" required style="margin-right:0.5rem;">
-                    <label for="postConfirm">I have checked my blog for accuracy, grammar, and spelling.</label>
-                </div>
-                <div id="postAlert"></div>
-                <button type="submit">Post</button>
-            </form>
-        </div>
-
-        <div class="blog-posts" id="blogPosts">
+     <div style="margin-bottom:1.5rem;">
+        <input type="text" id="searchInput" placeholder="Search blog titles..."
+            style="width:70%;max-width:350px;padding:0.5rem;border-radius:5px;border:1px solid #ccc;"
+            onkeydown="if(event.key==='Enter'){event.preventDefault();searchBlogs();}">
+        <button onclick="searchBlogs()"
+            style="padding:0.5rem 1rem;border-radius:5px;border:none;background:#007bff;color:#fff;cursor:pointer;">Search</button>
+    </div>
+    <div class="add-post">
+        <h2>Share Your Ideas</h2>
+        <form id="addPostForm" onsubmit="addPost(event)">
+            <div class="form-row" style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <input type="text" id="postTopic" placeholder="Enter the topic of your blog" required style="flex:1 1 200px;min-width:180px;">
+                <input type="text" id="postAuthor" placeholder="Enter your first name" required style="flex:1 1 150px;min-width:120px;">
+                <input type="date" id="postDate" required style="flex:1 1 140px;min-width:110px;">
+            </div>
+            <textarea id="postContent" placeholder="Write your blog post here..." required style="width:100%;margin-top:1rem;min-height:200px;box-sizing:border-box;"></textarea>
+            <div style="margin-bottom: 1rem;">
+                <input type="checkbox" id="postConfirm" required style="margin-right:0.5rem;">
+                <label for="postConfirm">I have checked my blog for accuracy, grammar, and spelling.</label>
+            </div>
+            <div id="postAlert"></div>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+    <div class="blog-posts" id="blogPosts">
             <!-- Blog posts will be dynamically added here -->
         </div>
     </div>
