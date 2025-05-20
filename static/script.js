@@ -446,3 +446,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Shared navigation and theme toggle logic for all pages
+document.addEventListener('DOMContentLoaded', function () {
+    // Dark mode toggle
+    var themeBtn = document.getElementById('themeToggleBtn');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+        });
+    }
+    // Burger menu toggle
+    var burger = document.getElementById('burgerMenu');
+    var navLinks = document.getElementById('navLinks');
+    if (burger && navLinks) {
+        burger.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
+    }
+});
