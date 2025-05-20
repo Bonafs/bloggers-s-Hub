@@ -373,6 +373,13 @@ footer {
 
 /* Nav links responsive for extra small screens */
 @media (max-width: 600px) {
+    .nav-links a {
+        color: #222; /* or #333 for better contrast */
+    }
+    .nav-links a.active {
+        background-color: #007bff;
+        color: #fff;
+    }
     .nav-links {
         flex-direction: column;
         display: none;
