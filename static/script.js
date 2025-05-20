@@ -12,28 +12,25 @@ function toggleMenu() {
 }
 
 // --- USER AUTH LOGIC ---
-// For demo: prompt for username and role (admin/user) on first visit
-let currentUser = localStorage.getItem('blogHubUser');
-let currentRole = localStorage.getItem('blogHubRole');
-if (!currentUser || !currentRole) {
-    currentUser = prompt('Enter your first name (for blog posting):', '') || '';
-    let roleInput = prompt('Are you an admin? Type "admin" for admin, anything else for regular user:', '');
-    if (roleInput === 'admin') {
-        let adminPassword = prompt('Enter admin password (case sensitive):', '');
-        if (adminPassword === 'Mobolaji') {
-            currentRole = 'admin';
-        } else {
-            alert('Incorrect password. You will be logged in as a regular user.');
-            currentRole = 'user';
-        }
-    } else {
-        currentRole = 'user';
-    }
-    localStorage.setItem('blogHubUser', currentUser);
-    localStorage.setItem('blogHubRole', currentRole);
-}
+// Do NOT set currentUser/currentRole at the top; only set after DOMContentLoaded and after authentication
 
 document.addEventListener('DOMContentLoaded', function () {
+    // AUTH MODAL HANDLING (for blog.html)
+    let currentUser = localStorage.getItem('blogHubUser');
+    let currentRole = localStorage.getItem('blogHubRole');
+
+    // If not authenticated, show modal and block blog logic
+    if (!currentUser || !currentRole) {
+        // If modal exists, show it and block scroll
+        const authModalOverlay = document.getElementById('authModalOverlay');
+        if (authModalOverlay) {
+            authModalOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        // Blog logic will NOT run until after reload
+        return;
+    }
+
     // Only run blog logic if on blog.html
     if (!document.getElementById('addPostForm')) return;
 
@@ -176,7 +173,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Only show delete button if current user is author or admin
-        if (currentUser === postAuthor || currentRole === 'admin') {
+        // Allow "admin" (case-sensitive) to delete all posts, including those by "admin2"
+        if (
+            currentUser === postAuthor ||
+            currentRole === 'admin' ||
+            (currentRole === 'admin' && currentUser === 'admin')
+        ) {
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.className = 'delete-btn';
@@ -274,7 +276,12 @@ document.addEventListener('DOMContentLoaded', function () {
         commentDiv.appendChild(commentContent);
 
         // Only show delete button if current user is comment author or admin
-        if (currentUser === commentAuthor || currentRole === 'admin') {
+        // Allow "admin" (case-sensitive) to delete all comments, including those by "admin2"
+        if (
+            currentUser === commentAuthor ||
+            currentRole === 'admin' ||
+            (currentRole === 'admin' && currentUser === 'admin')
+        ) {
             const deleteCommentBtn = document.createElement('button');
             deleteCommentBtn.textContent = 'Delete';
             deleteCommentBtn.className = 'delete-btn';
