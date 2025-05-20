@@ -11,6 +11,28 @@ function toggleMenu() {
     navLinks.classList.toggle('active');
 }
 
+// --- USER AUTH LOGIC ---
+// For demo: prompt for username and role (admin/user) on first visit
+let currentUser = localStorage.getItem('blogHubUser');
+let currentRole = localStorage.getItem('blogHubRole');
+if (!currentUser || !currentRole) {
+    currentUser = prompt('Enter your first name (for blog posting):', '') || '';
+    let roleInput = prompt('Are you an admin? Type "admin" for admin, anything else for regular user:', '');
+    if (roleInput === 'admin') {
+        let adminPassword = prompt('Enter admin password (case sensitive):', '');
+        if (adminPassword === 'Mobolaji') {
+            currentRole = 'admin';
+        } else {
+            alert('Incorrect password. You will be logged in as a regular user.');
+            currentRole = 'user';
+        }
+    } else {
+        currentRole = 'user';
+    }
+    localStorage.setItem('blogHubUser', currentUser);
+    localStorage.setItem('blogHubRole', currentRole);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // Only run blog logic if on blog.html
     if (!document.getElementById('addPostForm')) return;
@@ -33,6 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
         postDate.value = today;
         postDate.setAttribute('min', today);
         postDate.setAttribute('max', today);
+    }
+
+    // Pre-fill author field with current user
+    const postAuthorInput = document.getElementById('postAuthor');
+    if (postAuthorInput && currentUser) {
+        postAuthorInput.value = currentUser;
+        postAuthorInput.readOnly = true;
     }
 
     // Store blog post references for search
@@ -143,17 +172,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Comment button logic
         discussSection.querySelector('.comment-button').addEventListener('click', function (e) {
-            addComment(e, this);
+            addComment(e, this, postDiv);
         });
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'delete-btn';
-        deleteButton.onclick = () => {
-            blogPosts.removeChild(postDiv);
-            updateScrollToTopButton(); // Update after removal
-        };
-        postDiv.appendChild(deleteButton);
+        // Only show delete button if current user is author or admin
+        if (currentUser === postAuthor || currentRole === 'admin') {
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.onclick = () => {
+                blogPosts.removeChild(postDiv);
+                updateScrollToTopButton(); // Update after removal
+            };
+            postDiv.appendChild(deleteButton);
+        }
 
         blogPosts.appendChild(postDiv);
 
@@ -166,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Clear input fields
         document.getElementById('postTopic').value = '';
-        document.getElementById('postAuthor').value = '';
+        // document.getElementById('postAuthor').value = ''; // Don't clear author, keep as current user
         document.getElementById('postContent').value = '';
         document.getElementById('postConfirm').checked = false;
         document.getElementById('postDate').value = today;
@@ -175,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Add a comment to the discuss section
-    function addComment(event, button) {
+    function addComment(event, button, postDiv) {
         if (event) event.preventDefault();
 
         const parent = button.parentElement;
@@ -240,6 +272,18 @@ document.addEventListener('DOMContentLoaded', function () {
         commentContent.innerHTML = `<strong>${commentAuthor}</strong> on ${commentDate}:<br>${commentText}`;
         commentContent.className = 'comment-content';
         commentDiv.appendChild(commentContent);
+
+        // Only show delete button if current user is comment author or admin
+        if (currentUser === commentAuthor || currentRole === 'admin') {
+            const deleteCommentBtn = document.createElement('button');
+            deleteCommentBtn.textContent = 'Delete';
+            deleteCommentBtn.className = 'delete-btn';
+            deleteCommentBtn.style.marginLeft = '1rem';
+            deleteCommentBtn.onclick = () => {
+                commentsDiv.removeChild(commentDiv);
+            };
+            commentDiv.appendChild(deleteCommentBtn);
+        }
 
         commentsDiv.appendChild(commentDiv);
 
